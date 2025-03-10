@@ -33,3 +33,27 @@ export const SignIn=async(req,res,next)=>{
         next(error)
     }
 }
+
+export const Google=async (req,res,next)=>{
+    try{
+        const {name,email,photo}=req.body 
+        const validUser=await User.findOne({email})
+        if (validUser){
+            const token=jwt.sign({id:validUser._id},process.env.JWT_TOKEN)
+            res.cookie('access_token',token,{httpOnly:true}).status(200).json(validUser)
+        }
+        else{
+            const generatedPassword=Math.random().toString(36).slice(-8)
+            const hashedPassword=await bcryptjs.hashSync(generatedPassword,10);
+            const newUser=new User({username:name.split(" ").join("").toLowerCase()+Math.random().toString(36).slice(-8),email,password:hashedPassword,avatar:photo})
+            await newUser.save()
+            const token=jwt.sign({id:validUser._id},process.env.JWT_TOKEN)
+            res.cookie('access_token',token,{httpOnly:true}).status(200).json(validUser)
+
+        }
+
+    }
+    catch(error){
+        next(error)
+    }
+}

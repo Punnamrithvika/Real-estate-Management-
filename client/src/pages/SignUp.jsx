@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import { set } from "mongoose";
 import { useNavigate } from "react-router-dom";
+import Oauth from "../components/Oauth";
 export default function SignUp(){
     const [formData,setFormData]=useState({
         username: "",

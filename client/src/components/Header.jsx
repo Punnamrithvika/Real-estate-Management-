@@ -24,7 +24,7 @@ export default function Header(){
             <Link to="/about"> 
             <li>About</li>
             </Link>
-            <Link to="/sign-in"> 
+            <Link to="/profile"> 
              {!currentUser?(<li>SignIn</li>):(<img alt="avatar" src={currentUser.avatar} className="h-7 w-7"/>)}
             </Link>
         </ul>

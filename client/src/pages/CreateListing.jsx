@@ -59,13 +59,13 @@ export default function CreateListing() {
       });
 
       const data = await res.json();
-      if (!data.success) {
+      setLoading(false);
+      if (data.success===false) {
         setLoading(false);
         setError(data.message);
         return;
       }
-
-      setLoading(false);
+      setLoading(false)
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
@@ -82,7 +82,7 @@ export default function CreateListing() {
         <input type="text" id="description" placeholder="Description" required onChange={onHandleChanges} value={formData.description} className="w-full p-2 border rounded" />
         <input type="text" id="address" placeholder="Address" required onChange={onHandleChanges} value={formData.address} className="w-full p-2 border rounded" />
 
-        {/* ✅ Type selection using radio buttons */}
+        
         <div className="flex gap-4">
           <label className="flex items-center gap-2">
             <input type="radio" name="type" value="sale" onChange={onHandleChanges} checked={formData.type === "sale"} />

@@ -1,7 +1,7 @@
 import Listing from "../models/listing.model.js"
 import User from "../models/user.model.js"
 import { errorHandler } from "../utils/error.js"
-
+import mongoose from "mongoose"
 export const test=(req,res)=>{
     res.send("Hello Api")
 }
@@ -65,4 +65,4 @@ export const getUserListings=async (req,res,next)=>{
         }
     }
 }
-
+   

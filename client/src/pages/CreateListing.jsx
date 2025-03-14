@@ -4,11 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function CreateListing() {
   const [formData, setFormData] = useState({
-    imageUrls: [
-      "https://m.economictimes.com/thumb/height-450,width-600,imgsize-22382,msid-111780228/which-mansion-tops-the-list-of-the-worlds-most-expensive-houses.jpg",
-      "https://www.bhg.com/thmb/H9VV9JNnKl-H1faFXnPlQfNprYw=/1799x0/filters:no_upscale():strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
-      "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    ],
+    imageUrls: [],
     name: "",
     description: "",
     address: "",
@@ -127,14 +123,23 @@ export default function CreateListing() {
         </div>
 
         <div>
-          <p>Images:</p>
-          <span className="text-sm text-gray-600">The first image will be the cover (max 6)</span>
-        </div>
+  <p>Enter Image URLs (Max 3):</p>
+  {[0, 1, 2].map((index) => (
+    <input
+      key={index}
+      type="text"
+      placeholder={`Image URL ${index + 1}`}
+      value={formData.imageUrls[index] || ""}
+      onChange={(e) => {
+        const newImageUrls = [...formData.imageUrls];
+        newImageUrls[index] = e.target.value;
+        setFormData({ ...formData, imageUrls: newImageUrls });
+      }}
+      className="w-full p-2 border rounded my-2"
+    />
+  ))}
+</div>
 
-        <div className="flex items-center gap-4">
-          <input type="file" id="images" accept="image/*" multiple className="p-2 border rounded" />
-          <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded">Upload</button>
-        </div>
 
         <div className="flex flex-wrap gap-4">
           {formData.imageUrls.map((url, index) => (

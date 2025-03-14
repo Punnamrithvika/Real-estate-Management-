@@ -198,7 +198,7 @@ export default function Profile() {
         Show Listings
       </button>
       {showListingError && <p className="text-red-500">Error occurred</p>}
-      {userListing.length===0 &&(<p>No Listings Found</p>)}
+      
       {userListing.length > 0 && (
         <div className="mt-6 w-full max-w-2xl">
           <h1 className="text-xl font-semibold mb-4">Your Listings</h1>

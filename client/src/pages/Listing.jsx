@@ -65,7 +65,7 @@ export default function Listing() {
                     <div className="p-4 bg-white shadow-md rounded-lg mt-4">
                         <h2 className="text-2xl font-bold">{listing.name}</h2>
                         <p className="text-lg text-gray-700">
-                            ${listing.offer ? listing.discountPrice.toLocaleString("en-US") : listing.regularPrice.toLocaleString("en-US")}
+                           {listing.regularPrice.toLocaleString("en-US")}
                             {listing.type === "rent" && " / month"}
                         </p>
                         <p className="flex items-center text-gray-600 mt-2">

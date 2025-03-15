@@ -31,7 +31,7 @@ export default function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const apiUrl = `/api/user/update/${currentUser._id}1`;
+      const apiUrl = `/api/user/update/${currentUser._id}`;
       const options = {
         method: "POST",
         headers: {

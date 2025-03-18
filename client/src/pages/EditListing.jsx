@@ -20,6 +20,7 @@ export default function EditListing() {
     offer: false,
     parking: false,
     furnished: false,
+    locationLink: "",
   });
 
   const [error, setError] = useState("");
@@ -120,6 +121,14 @@ export default function EditListing() {
           required
           onChange={onHandleChanges}
           value={formData.address}
+          className="w-full border p-2 rounded"
+        />
+        <input
+          type="text"
+          placeholder="Location Link"
+          id="locationLink"
+          onChange={onHandleChanges}
+          value={formData.locationLink}
           className="w-full border p-2 rounded"
         />
 

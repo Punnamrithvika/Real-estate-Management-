@@ -16,6 +16,7 @@ export default function CreateListing() {
     offer: false,
     parking: false,
     furnished: false,
+    locationLink: "",
   });
 
   const [error, setError] = useState("");
@@ -60,12 +61,12 @@ export default function CreateListing() {
 
       const data = await res.json();
       setLoading(false);
-      if (data.success===false) {
+      if (data.success === false) {
         setLoading(false);
         setError(data.message);
         return;
       }
-      setLoading(false)
+      setLoading(false);
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
@@ -81,6 +82,14 @@ export default function CreateListing() {
         <input type="text" id="name" placeholder="Name" required onChange={onHandleChanges} value={formData.name} className="w-full p-2 border rounded" />
         <input type="text" id="description" placeholder="Description" required onChange={onHandleChanges} value={formData.description} className="w-full p-2 border rounded" />
         <input type="text" id="address" placeholder="Address" required onChange={onHandleChanges} value={formData.address} className="w-full p-2 border rounded" />
+        <input
+          type="text"
+          id="locationLink"
+          placeholder="Location Link"
+          onChange={onHandleChanges}
+          value={formData.locationLink}
+          className="w-full p-2 border rounded"
+        />
 
         
         <div className="flex gap-4">

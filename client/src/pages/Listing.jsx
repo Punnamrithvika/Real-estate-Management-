@@ -71,6 +71,18 @@ export default function Listing() {
                         <p className="flex items-center text-gray-600 mt-2">
                             <FaMapMarkerAlt className="mr-2 text-red-500" /> {listing.address}
                         </p>
+                        {listing.locationLink && (
+                            <div className="mt-2">
+                                <a
+                                    href={listing.locationLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-block bg-red-500 text-white px-4 py-2 rounded"
+                                >
+                                    Locate
+                                </a>
+                            </div>
+                        )}
                         <div className="flex space-x-4 mt-4">
                             <span className={`px-3 py-1 text-white rounded-md ${listing.type === "rent" ? "bg-blue-500" : "bg-green-500"}`}>
                                 {listing.type === "rent" ? "For Rent" : "For Sale"}

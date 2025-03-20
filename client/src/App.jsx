@@ -10,8 +10,12 @@ import CreateListing from "./pages/CreateListing";
 import EditListing from './pages/EditListing'
 import Listing from "./pages/Listing";
 import Search from "./pages/Search";
+import WishList from "./pages/WishList";
+import WishlistProvider from "./WishlistContext";
 export default function App(){
-  return <BrowserRouter>
+  return(
+    <WishlistProvider>
+   <BrowserRouter>
   <Header/>
   <Routes>
     <Route path="/" element={<Home/>}></Route>
@@ -24,7 +28,10 @@ export default function App(){
     <Route path="/create-listing" element={<CreateListing/>}></Route>
     <Route path='/update-listing/:listingId' element={<EditListing/>}></Route>
     <Route path="/listing/:listingId" element={<Listing/>}></Route>
+    <Route path="/wishlist" element={<WishList/>}></Route>
     </Route>
   </Routes>
   </BrowserRouter>
+  </WishlistProvider>
+  )
 }

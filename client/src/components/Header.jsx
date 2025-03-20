@@ -57,6 +57,9 @@ export default function Header() {
         <Link to="/create-listing">
           <li className="hover:text-blue-500">Create List</li>
         </Link>
+        <Link to="/wishlist">
+        <li className="hover:text-blue-500">Wish List</li>
+        </Link>
         <Link to="/profile">
           {!currentUser ? (
             <li className="hover:text-blue-500">Sign In</li>

@@ -2,10 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdLocationOn } from 'react-icons/md'
 import { useWishlist } from '../WishlistContext'
-import { FaHeart } from 'react-icons/fa'
-
-export default function ListingItem({ listing }) {
-  const {addToWishlist}=useWishlist()
+export default function WishListItem ({ listing }) {
+  const {removeFromWishlist}=useWishlist()
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden p-4"> 
       <Link to={`/listing/${listing._id}`}>
@@ -28,13 +26,9 @@ export default function ListingItem({ listing }) {
         </div>
        
       </Link>
-      <button 
-              onClick={() => addToWishlist(listing)}
-              className="px-3 py-1 bg-blue-500 text-white rounded"
-            >
-            <FaHeart className="text-xl" />
-
-            </button>
+      <button onClick={()=>removeFromWishlist(listing._id)}>
+        Remove from WishList
+      </button>
     </div>
   )
 }

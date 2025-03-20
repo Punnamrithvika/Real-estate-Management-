@@ -1,13 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { MdLocationOn } from 'react-icons/md'
-import { useWishlist } from '../WishlistContext'
-import { FaHeart } from 'react-icons/fa'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { MdLocationOn } from 'react-icons/md';
+import { useWishlist } from '../WishlistContext';
+import { FaHeart } from 'react-icons/fa';
 
 export default function ListingItem({ listing }) {
-  const {addToWishlist}=useWishlist()
+  const { addToWishlist } = useWishlist();
+  const [isSetWishList, setWishList] = useState(false); // State variable
+
+  const handleWishList = () => {
+    addToWishlist(listing);
+    setWishList(!isSetWishList); // Toggle wishlist state
+  };
+
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden p-4"> 
+    <div className="bg-white shadow-md rounded-lg overflow-hidden p-4">
       <Link to={`/listing/${listing._id}`}>
         <img src={listing.imageUrls[0]} alt="home" className="w-full h-48 object-cover rounded-md" />
         <div className="p-3">
@@ -26,15 +33,15 @@ export default function ListingItem({ listing }) {
             <p>{listing.bathrooms > 1 ? `${listing.bathrooms} bathrooms` : `${listing.bathrooms} bathroom`}</p>
           </div>
         </div>
-       
       </Link>
-      <button 
-              onClick={() => addToWishlist(listing)}
-              className="px-3 py-1 bg-blue-500 text-white rounded"
-            >
-            <FaHeart className="text-xl" />
 
-            </button>
+      {/* Wishlist Button */}
+      <button 
+  onClick={handleWishList}
+  className={`p-2 rounded-full transition ${isSetWishList ? 'bg-red-500' : 'bg-transparent'}`}
+>
+  <FaHeart className="text-md" />
+</button>
     </div>
-  )
+  );
 }

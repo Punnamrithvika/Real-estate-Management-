@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdLocationOn } from 'react-icons/md'
 import { useWishlist } from '../WishlistContext'
+import { FaTrash } from 'react-icons/fa' 
 export default function WishListItem ({ listing }) {
   const {removeFromWishlist}=useWishlist()
   return (
@@ -26,8 +27,11 @@ export default function WishListItem ({ listing }) {
         </div>
        
       </Link>
-      <button onClick={()=>removeFromWishlist(listing._id)}>
-        Remove from WishList
+      <button 
+        onClick={() => removeFromWishlist(listing._id)}
+        className="p-2 rounded-full bg-red-500 hover:bg-red-600 transition"
+      >
+        <FaTrash className="text-white text-md" />
       </button>
     </div>
   )

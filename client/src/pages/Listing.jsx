@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { useWishlist } from '../WishlistContext';
+import { FaHeart } from 'react-icons/fa';
 import {
     FaBath,
     FaBed,
@@ -17,7 +19,13 @@ export default function Listing() {
     const params = useParams();
     const [listing, setListing] = useState(null);
     const [copied, setCopied] = useState(false);
-
+    const {addToWishlist}=useWishlist()
+     const [isSetWishList, setWishList] = useState(false); // State variable
+    
+      const handleWishList = () => {
+        addToWishlist(listing);
+        setWishList(!isSetWishList); // Toggle wishlist state
+      };
     useEffect(() => {
         const fetchListing = async () => {
             try {
@@ -102,9 +110,18 @@ export default function Listing() {
                             <li className="flex items-center"><FaParking className="mr-2 text-blue-500" /> {listing.parking ? "Parking spot" : "No Parking"}</li>
                             <li className="flex items-center"><FaChair className="mr-2 text-blue-500" /> {listing.furnished ? "Furnished" : "Unfurnished"}</li>
                         </ul>
+                        <button 
+              onClick={handleWishList}
+              className={`p-2 rounded-full transition ${isSetWishList ? 'bg-red-500' : 'bg-transparent'}`}
+            >
+              <FaHeart className="text-xl" />
+            </button>
                     </div>
+                   
                 </div>
+                
             )}
+              
         </div>
     );
 }

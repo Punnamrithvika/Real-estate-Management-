@@ -36,9 +36,11 @@ export default function ListingItem({ listing }) {
       </Link>
 
       {/* Wishlist Button */}
-      <button 
+      <button
   onClick={handleWishList}
-  className={`p-2 rounded-full transition ${isSetWishList ? 'bg-red-500' : 'bg-transparent'}`}
+  className={`p-2 rounded-full border-2 transition ${
+    isSetWishList ? 'bg-red-500 border-red-500 text-white' : 'bg-transparent border-white text-white'
+  }`}
 >
   <FaHeart className="text-md" />
 </button>

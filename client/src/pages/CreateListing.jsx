@@ -33,12 +33,19 @@ export default function CreateListing() {
 
   const onHandleChanges = (e) => {
     const { id, value, checked, type, name } = e.target;
+    let newValue = type === "checkbox" ? checked : value;
+  
+    // Convert number inputs to actual numbers
+    if (["regularPrice", "discountPrice", "bedrooms", "bathrooms"].includes(id)) {
+      newValue = Number(value); // Convert to number
+    }
+  
     setFormData({
       ...formData,
-      [name || id]: type === "checkbox" ? checked : value,
+      [name || id]: newValue,
     });
   };
-
+  
   const onSubmitForm = async (e) => {
     e.preventDefault();
 

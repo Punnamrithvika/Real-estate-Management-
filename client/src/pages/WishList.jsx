@@ -1,6 +1,5 @@
 import React from "react";
 import { useWishlist } from "../WishlistContext";
-import ListingItem from "../components/ListingItem";
 import WishListItem from "../components/WishListItems";
 
 const WishList = () => {

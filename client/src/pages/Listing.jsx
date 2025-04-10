@@ -5,15 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useWishlist } from '../WishlistContext';
-import { FaHeart } from 'react-icons/fa';
-import {
-  FaBath,
-  FaBed,
-  FaChair,
-  FaMapMarkerAlt,
-  FaParking,
-  FaShare,
-} from "react-icons/fa";
+import { FaHeart, FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from "react-icons/fa";
 
 export default function Listing() {
   const params = useParams();
@@ -59,37 +51,29 @@ export default function Listing() {
             ))}
           </Swiper>
 
-          <div className="flex justify-between items-center p-4">
-            <FaShare
-              className="cursor-pointer text-gray-500 hover:text-gray-700"
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
-              }}
-            />
+          {/* Icons Row */}
+          <div className="flex justify-end items-center p-4 space-x-4">
             <button
               onClick={handleWishList}
               className={`p-2 rounded-full transition ${isSetWishList ? 'bg-red-500' : 'bg-gray-200 hover:bg-gray-300'}`}
             >
               <FaHeart className={`text-xl ${isSetWishList ? 'text-white' : 'text-gray-600'}`} />
             </button>
+            <FaShare
+              className="cursor-pointer text-gray-500 hover:text-gray-700 text-xl"
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }}
+            />
           </div>
 
           {copied && (
             <p className="text-green-500 text-sm text-center">Link copied!</p>
           )}
 
-          {/* Book Appointment */}
-          <div className="text-center mt-4">
-            <button
-              className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-md shadow-md transition"
-              onClick={() => alert("Appointment booked! (You can customize this)")}
-            >
-              Book Appointment
-            </button>
-          </div>
-
+          {/* Details Section */}
           <div className="p-6">
             <h2 className="text-2xl font-bold text-gray-800">{listing.name}</h2>
             <p className="text-xl text-blue-600 mt-2 font-semibold">
@@ -142,6 +126,16 @@ export default function Listing() {
                 <FaChair className="mr-2 text-blue-500" /> {listing.furnished ? "Furnished" : "Unfurnished"}
               </li>
             </ul>
+
+            {/* Book Appointment at the end */}
+            <div className="text-center mt-8">
+              <button
+                className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-md shadow-md transition"
+                onClick={() => alert("Appointment booked! (Customize this action as needed)")}
+              >
+                Book Appointment
+              </button>
+            </div>
           </div>
         </div>
       )}

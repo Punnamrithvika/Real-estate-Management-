@@ -136,12 +136,14 @@ export default function Listing() {
             </div>
     
             {/* Book Appointment */}
+            <div className="flex justify-center">
             <button
               onClick={onHandleAppointment}
-              className="mt-6 w-full bg-blue-500 text-white px-4 py-3 rounded hover:bg-blue-600 transition"
+              className="mt-6 w-500 bg-blue-500 text-white px-4 py-3 rounded hover:bg-blue-600 transition"
             >
               Book Appointment
             </button>
+            </div>
           </div>
         )}
       </div>

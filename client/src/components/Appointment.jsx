@@ -65,12 +65,14 @@ export default function Appointment({ listingId }) {
             className="w-full p-2 border border-gray-300 rounded"
             rows="4"
           ></textarea>
+          <div className="flex justify-center mt-4">
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+            className="w-500 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
           >
             Book Appointment
           </button>
+          </div>
         </form>
       )}
     </div>

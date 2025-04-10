@@ -183,13 +183,15 @@ export default function Search() {
                     ))}
                 </div>
                 {showMoreListing && (
+                    <div className="flex justify-center mt-4">
                     <button
                         type="button"
                         onClick={showMoreListingClick}
-                        className="mt-4 bg-gray-600 text-white p-2 rounded-md w-full"
+                        className="mt-4 bg-gray-600 text-white p-2 rounded-md w-500"
                     >
                         Show More
                     </button>
+                    </div>
                 )}
             </div>
         </div>

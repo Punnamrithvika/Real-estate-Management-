@@ -79,7 +79,7 @@ export default function SignUp() {
                     >
                         {loading ? "Loading..." : "Sign Up"}
                     </button>
-                    <Oauth />
+                    <Oauth pageType="signUp" />
                     {error && <p className="text-red-500 text-sm text-center">{error}</p>}
                 </form>
                 <p className="text-center mt-4">

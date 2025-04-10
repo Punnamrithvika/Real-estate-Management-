@@ -156,14 +156,6 @@ export default function Profile() {
           onChange={handleChange}
           className="w-full p-2 border rounded-md mt-4"
         />
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          defaultValue={currentUser.password}
-          onChange={handleChange}
-          className="w-full p-2 border rounded-md mt-4"
-        />
         <button
           className="w-full bg-blue-500 text-white p-2 mt-4 rounded-md hover:bg-blue-600"
         >

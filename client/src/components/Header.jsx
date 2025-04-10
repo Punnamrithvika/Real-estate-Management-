@@ -28,7 +28,7 @@ export default function Header() {
     <div className="flex justify-between items-center px-4 py-2 bg-white shadow-md">
       <Link to="/">
         <h1 className="text-2xl font-bold">
-          <span className="text-blue-500">Raj</span>
+          <span className="text-blue-500">Real</span>
           <span className="text-blue-700">Estate</span>
         </h1>
       </Link>
@@ -55,7 +55,7 @@ export default function Header() {
           <li className="hover:text-blue-500">Explore</li>
         </Link>
         <Link to="/create-listing">
-          <li className="hover:text-blue-500">Create List</li>
+          <li className="hover:text-blue-500">Add Property</li>
         </Link>
         <Link to="/wishlist">
         <li className="hover:text-blue-500">Wish List</li>

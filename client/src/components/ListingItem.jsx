@@ -1,31 +1,55 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdLocationOn } from 'react-icons/md';
 import { useWishlist } from '../WishlistContext';
 import { FaHeart } from 'react-icons/fa';
 
 export default function ListingItem({ listing }) {
   const { addToWishlist } = useWishlist();
-  const [isSetWishList, setWishList] = useState(false); // State variable
+  const [isSetWishList, setWishList] = useState(false);
+  const navigate = useNavigate();
 
   const handleWishList = () => {
     addToWishlist(listing);
-    setWishList(!isSetWishList); // Toggle wishlist state
+    setWishList(!isSetWishList);
+  };
+
+  const onHandleAppointment = () => {
+    navigate('/appointment');
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden p-4">
+    <div className="relative bg-white shadow-md rounded-lg overflow-hidden p-4">
+      {/* Wishlist Icon */}
+      <button
+        onClick={handleWishList}
+        className={`absolute top-4 right-4 p-2 rounded-full transition ${
+          isSetWishList ? 'bg-red-500 text-white' : 'bg-gray-200 text-red-500'
+        }`}
+      >
+        <FaHeart className="text-lg" />
+      </button>
+
       <Link to={`/listing/${listing._id}`}>
-        <img src={listing.imageUrls[0]} alt="home" className="w-full h-48 object-cover rounded-md" />
+        <img
+          src={listing.imageUrls[0]}
+          alt="home"
+          className="w-full h-48 object-cover rounded-md"
+        />
         <div className="p-3">
-          <p className="text-gray-700 font-semibold text-lg truncate">{listing.name}</p>
+          <p className="text-gray-700 font-semibold text-lg truncate">
+            {listing.name}
+          </p>
           <div className="text-sm text-gray-500 flex items-center gap-1 mt-1">
             <MdLocationOn className="text-red-500" />
             <p className="truncate">{listing.address}</p>
           </div>
           <p className="text-gray-600 text-sm mt-2 truncate">{listing.description}</p>
           <p className="text-lg font-bold text-blue-500 mt-2">
-            ${listing.offer ? listing.discountPrice.toLocaleString('en-US') : listing.regularPrice.toLocaleString('en-US')}
+            $
+            {listing.offer
+              ? listing.discountPrice.toLocaleString('en-US')
+              : listing.regularPrice.toLocaleString('en-US')}
             {listing.type === 'rent' && '/month'}
           </p>
           <div className="flex space-x-4 text-gray-600 text-sm mt-2">
@@ -35,15 +59,14 @@ export default function ListingItem({ listing }) {
         </div>
       </Link>
 
-      {/* Wishlist Button */}
-      <button
-  onClick={handleWishList}
-  className={`p-2 rounded-full border-2 transition ${
-    isSetWishList ? 'bg-red-500 border-red-500 text-white' : 'bg-transparent border-white text-white'
-  }`}
->
-  <FaHeart className="text-md" />
-</button>
+      <div className="mt-4">
+        <button
+          onClick={onHandleAppointment}
+          className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Book Appointment
+        </button>
+      </div>
     </div>
   );
 }

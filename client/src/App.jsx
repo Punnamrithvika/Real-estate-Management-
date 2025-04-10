@@ -12,6 +12,7 @@ import Listing from "./pages/Listing";
 import Search from "./pages/Search";
 import WishList from "./pages/WishList";
 import WishlistProvider from "./WishlistContext";
+import Appointment from "./components/Appointment";
 export default function App(){
   return(
     <WishlistProvider>
@@ -29,6 +30,7 @@ export default function App(){
     <Route path='/update-listing/:listingId' element={<EditListing/>}></Route>
     <Route path="/listing/:listingId" element={<Listing/>}></Route>
     <Route path="/wishlist" element={<WishList/>}></Route>
+    <Route path="/appointment" element={<Appointment/>}></Route>
     </Route>
   </Routes>
   </BrowserRouter>

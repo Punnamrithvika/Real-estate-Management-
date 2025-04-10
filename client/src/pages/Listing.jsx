@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useWishlist } from '../WishlistContext';
 import { FaHeart, FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from "react-icons/fa";
-import { Dialog } from '@headlessui/react';
+import Appointment from "../components/Appointment";
 
 export default function Listing() {
   const params = useParams();
@@ -14,24 +14,10 @@ export default function Listing() {
   const [copied, setCopied] = useState(false);
   const [isSetWishList, setWishList] = useState(false);
   const { addToWishlist } = useWishlist();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", date: "" });
 
   const handleWishList = () => {
     addToWishlist(listing);
     setWishList(!isSetWishList);
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Appointment Data:", formData);
-    alert("Appointment booked!");
-    setIsModalOpen(false);
-    setFormData({ name: "", email: "", date: "" });
   };
 
   useEffect(() => {
@@ -128,69 +114,11 @@ export default function Listing() {
               <li className="flex items-center"><FaParking className="mr-2 text-blue-500" /> {listing.parking ? "Parking spot" : "No Parking"}</li>
               <li className="flex items-center"><FaChair className="mr-2 text-blue-500" /> {listing.furnished ? "Furnished" : "Unfurnished"}</li>
             </ul>
-
-            <div className="text-center mt-8">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-md shadow-md transition"
-              >
-                Book Appointment
-              </button>
-            </div>
           </div>
+
+          <Appointment listingId={listing._id} />
         </div>
       )}
-
-      <Dialog as={Fragment} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-30 flex items-center justify-center">
-          <Dialog.Panel className="bg-white rounded-lg p-6 max-w-md w-full shadow-lg">
-            <Dialog.Title className="text-lg font-semibold mb-4">Book an Appointment</Dialog.Title>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Your Name"
-                required
-                className="w-full border border-gray-300 px-4 py-2 rounded"
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Your Email"
-                required
-                className="w-full border border-gray-300 px-4 py-2 rounded"
-              />
-              <input
-                type="datetime-local"
-                name="date"
-                value={formData.date}
-                onChange={handleInputChange}
-                required
-                className="w-full border border-gray-300 px-4 py-2 rounded"
-              />
-              <div className="flex justify-end space-x-2">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700"
-                >
-                  Confirm
-                </button>
-              </div>
-            </form>
-          </Dialog.Panel>
-        </div>
-      </Dialog>
     </div>
   );
 }

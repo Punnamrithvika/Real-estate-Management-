@@ -72,7 +72,7 @@ export default function SignIn() {
                     >
                         {loading ? "Loading..." : "Sign In"}
                     </button>
-                    <Oauth />
+                    <Oauth pageType="signIn" />
                     {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
                 </form>
                 <p className="mt-4 text-sm text-center text-gray-600">

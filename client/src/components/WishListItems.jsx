@@ -17,7 +17,7 @@ export default function WishListItem ({ listing }) {
           </div>
           <p className="text-gray-600 text-sm mt-2 truncate">{listing.description}</p>
           <p className="text-lg font-bold text-blue-500 mt-2">
-            ${listing.offer ? listing.discountPrice.toLocaleString('en-US') : listing.regularPrice.toLocaleString('en-US')}
+            Rs: {listing.offer ? listing.discountPrice.toLocaleString('en-US') : listing.regularPrice.toLocaleString('en-US')}
             {listing.type === 'rent' && '/month'}
           </p>
           <div className="flex space-x-4 text-gray-600 text-sm mt-2">

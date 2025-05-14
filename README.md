@@ -1,8 +1,5 @@
-Based on the analysis of the repository, here is the professional README template for your project:
 
----
-
-# Real Estate Management
+# Real Estate Management Website (MERN)
 
 ## Overview
 
